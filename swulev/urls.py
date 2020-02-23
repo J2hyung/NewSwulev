@@ -9,4 +9,5 @@ urlpatterns = [
     path('main/', main, name='main'),
     path('detail/<lectureid>/', detail, name='detail'),
     path('mypage/', mypage, name='mypage'),
+    path('main_search/',post_list,name='search')
 ]

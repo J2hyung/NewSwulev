@@ -67,3 +67,22 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('index')
+
+
+#검색
+def post_list(request):
+    qs = Lecture.objects.all()
+    q = request.GET.get('q', '')
+    lectures=[]
+    
+    if q:
+        ql = qs.filter(lecturename__icontains=q)
+        qp = qs.filter(professor__icontains=q)
+        if( not ql and not qp):
+            return render(request, 'main.html',{'popup':True})
+        else:
+            for object in ql:
+                lectures.append(object)
+            for object in qp:
+                lectures.append(object)
+            return render(request, 'main_search.html', {'lectures' : lectures,'q' : q,})
