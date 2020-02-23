@@ -22,7 +22,7 @@ class UserLecture(models.Model):
 
 
 class Lecture(models.Model):
-    semester = models.CharField(max_length = 30, unique=True)
+    semester = models.CharField(max_length = 30)
     lectureid = models.CharField(max_length=20, primary_key=True, unique=True)
     lecturename = models.CharField(max_length=50)
     professor = models.CharField(max_length=50)
