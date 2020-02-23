@@ -13,7 +13,7 @@
     <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
     <!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
     <!-- WARNING: Respond.js 는 당신이 file:// 을 통해 페이지를 볼 때는 동작하지 않습니다. -->
     <!--[if lt IE 9]>
@@ -27,7 +27,7 @@
 
         <form class="form-signup" method="POST" action="{% url 'signup' %}">
           {% csrf_token %}
-          <h2 class="form-signin-heading">SWULEV</h2>
+          <h2 class="form-signup-heading">SWULEV</h2>
 
           <div class="school-info">
             <label for="inputSchool" class="sr-only">학교</label>
@@ -55,16 +55,11 @@
           </div>
           
           <button class="btn btn-primary" type="submit" value="login">회원가입</button>
-          <button class="btn btn-primary" type="submit" value="login">로그인</button>
+          <button class="btn btn-primary" type="submit" value="login">취소</button>
         </form>
 
     </div> <!-- /container -->
 
-    <footer class="footer">
-        <div class="container">
-            <p class="text-muted">develop by. swu babylions</p>
-             <br></div>
-    </footer>
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
