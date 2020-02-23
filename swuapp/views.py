@@ -31,11 +31,16 @@ def signup(request):
         # User has info and wants an account now!
         if request.POST['password'] == request.POST['password2']:
             try: # if Username is overlap
-                user = User.objects.get(username=request.POST['username'])
+                user = User.objects.get(username=request.POST.get('username', False))
                 return render(request, 'signup.html', {'error': '이미 사용 중인 이름입니다.'})
             except User.DoesNotExist:
                 user = User.objects.create_user(id=request.POST['id'], password=request.POST['password'], email=request.POST['email'],
-                name=request.POST['name'], school=request.POST['school'], hakbun=request.POST['hakbun'])
+                username=request.POST['username'], school=request.POST['school'], hakbun=request.POST['hakbun'])
+
+                if paswword != password2:
+                    return render(request, 'signup.html', {'error': '비밀번호가 다릅니다.'})
+
+                user.save()
                 auth.login(request, user)
                 return redirect('main')
         else:
@@ -47,7 +52,7 @@ def signup(request):
 
 def login(request):
     if request.method == 'POST':
-        id = request.POST['id']
+        username = request.POST['username']
         password = request.POST['password']
         user = auth.authenticate(request, user_id=id, user_password=password)
         if user is not None:
