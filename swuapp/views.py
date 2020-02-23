@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404,redirect
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib import auth
@@ -30,19 +30,19 @@ def signup(request):
     if request.method == 'POST':
         # User has info and wants an account now!
         if request.POST['password'] == request.POST['password2']:
-            try: # if Username is overlap
-                user = User.objects.get(username=request.POST.get('username', False))
-                return render(request, 'signup.html', {'error': '이미 사용 중인 이름입니다.'})
-            except User.DoesNotExist:
-                user = User.objects.create_user(id=request.POST['id'], password=request.POST['password'], email=request.POST['email'],
-                username=request.POST['username'], school=request.POST['school'], hakbun=request.POST['hakbun'])
-
-                if paswword != password2:
-                    return render(request, 'signup.html', {'error': '비밀번호가 다릅니다.'})
-
-                user.save()
-                auth.login(request, user)
-                return redirect('main')
+            # try: # if Username is overlap
+            #     user_name = request.POST['id']
+            #     # user = User.objects.get(username=user_name)
+            #     return render(request, 'signup.html', {'error': '이미 사용 중인 이름입니다.'})
+            # except User.DoesNotExist:
+            user = User.objects.create_user(username = request.POST['id'], password = request.POST['password'])
+            email = request.POST['email']
+            student_id = request.POST['hakbun']
+            nickname = request.POST['name']
+            profile = Profile(user= user, nickname=nickname ,student_id = student_id, email = email)
+            profile.save_user_profile(user)
+            auth.login(request, user)
+            return redirect('main')
         else:
             return render(request, 'signup.html', {'error': '아이디 또는 비밀번호 가 올바르지 않습니다.'})
     else:
@@ -52,9 +52,9 @@ def signup(request):
 
 def login(request):
     if request.method == 'POST':
-        username = request.POST['username']
+        username = request.POST['id']
         password = request.POST['password']
-        user = auth.authenticate(request, user_id=id, user_password=password)
+        user = auth.authenticate(request, username=username, password=password)
         if user is not None:
             auth.login(request, user)
             return redirect('main')
