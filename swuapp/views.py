@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-
+from .models import *
 # Create your views here.
 
 def login(request):
@@ -12,9 +12,12 @@ def main(request):
     lecture = Lecture.objects.all
     return render(request, 'main.html', {'board':board, 'lecture':lecture})
 
-def detail(request):
+def detail(request, lectureid):
 
-    return render(request, 'detail.html')
+    current_lecture = get_object_or_404(Lecture, pk=lectureid)
+    boards = Board.objects.filter(lecture = current_lecture)
+
+    return render(request, 'detail.html', {'current_lecture' : current_lecture, 'boards': boards})
 
 def mypage(request):
     return render(request, 'mypage.html')
