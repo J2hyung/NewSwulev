@@ -2,7 +2,27 @@ from django.db import models
 
 from django.urls import reverse
 
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+
 # Create your models here.
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete = models.CASCADE)
+    nickname = models.TextField(default='nickname')
+    student_id = models.TextField()
+    email = models.TextField()
+    school = models.CharField(max_length = 50, default='서울여자대학교')
+
+
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
+
 
 class User(models.Model):
     userid = models.CharField(max_length = 20, unique=True, primary_key=True)
