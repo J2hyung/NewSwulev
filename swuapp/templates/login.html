@@ -12,9 +12,8 @@
     <!-- 부트스트랩 -->
     <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    
+    <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
     <!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
     <!-- WARNING: Respond.js 는 당신이 file:// 을 통해 페이지를 볼 때는 동작하지 않습니다. -->
     <!--[if lt IE 9]>
@@ -22,23 +21,27 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
+
   <body>
 
     <div class="container">
-        <form class="form-signin" method="POST" action="{% url 'login' %}">
+        <form class="form-login" method="POST" action="{% url 'login' %}">
           {% csrf_token %}
           <h2 class="form-signin-heading">SWULEV</h2>
+
           <label for="inputId" class="sr-only">ID</label>
           <input type="id" id="ID" name="id" class="form-control" placeholder="ID" required autofocus>
-          <label for="inputPassword" class="sr-only">Password</label>
-          <input type="password" id="inputPassword" name="passwd" class="form-control" placeholder="PW" required>
           
-          <button class="btn btn-primary" type="submit" value="login">로그인</button>
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input type="password" id="inputPassword" name="password" class="form-control" placeholder="PW" required>
+          
+          <button class="btn btn-primary" type="submit" value="login">Login</button>
         </form>
-        <br>
-          <a href="{% url 'signup' %}">회원가입</a>
-
-  
+        
+          <div class="sub-info">
+            <span>swulev가 처음이신가요?</span>
+            <a href="{% url 'signup' %}">회원가입</a>  
+          </div>
     </div> <!-- /container -->
 
     <footer class="footer">
@@ -51,5 +54,6 @@
     <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
     <!-- <script src="js/bootstrap.min.js"></script> -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    
   </body>
 </html>
