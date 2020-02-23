@@ -1,10 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import *
-# Create your views here.
-
-def login(request):
-
-    return render(request, 'login.html')
+from django.contrib.auth.models import User
+from django.contrib import auth
 
 def main(request):
 
@@ -14,6 +11,7 @@ def main(request):
 
     return render(request, 'main.html', {'board':board, 'lecture':lecture})
 
+
 def detail(request, lectureid):
 
     current_lecture = get_object_or_404(Lecture, pk=lectureid)
@@ -21,21 +19,46 @@ def detail(request, lectureid):
 
     return render(request, 'detail.html', {'current_lecture' : current_lecture, 'boards': boards})
 
+
 def mypage(request):
     return render(request, 'mypage.html')
 
+
+##################### about accounts #####################
+
 def signup(request):
-    #user1 = Lecture.objects.raw('select * from swuapp_lecture')[0]
     if request.method == 'POST':
-            user_id = request.POST['id']
-            user_pw = request.POST['passwd']
-            user = User(userid=user_id, userpw=user_pw)
-            user.save()
-            if user is not None:
-                return redirect('main')
-            else:
-                return render(request, 'signup.html', {'error': 'ID 또는 PW가 올바르지 않습니다.'})
+        # User has info and wants an account now!
+        if request.POST['password'] == request.POST['password2']:
+            try: # if Username is overlap
+                user = User.objects.get(userName=request.POST['name'])
+                return render(request, 'signup.html', {'error': '이미 사용 중인 이름입니다.'})
+            except User.DoesNotExist:
+                user = User.objects.create_user(request.POST['name'], password=request.POST['password'], email=request.POST['email'],
+                name=request.POST['name'], school=request.POST['school'], hakbun=request.POST['hakbun'])
+                auth.login(request, user)
+                return redirect('index')
+        else:
+            return render(request, 'signup.html', {'error': '아이디 또는 비밀번호 가 올바르지 않습니다.'})
     else:
+        # User wants to enter info
         return render(request, 'signup.html')
-    # user1 = Lecture.objects.raw('select * from swuapp_lecture')[0]
-    # return render(request, 'login.html', {'user1':user1})
+
+
+def login(request):
+    if request.method == 'POST':
+        user_id = request.POST['id']
+        user_password = request.POST['password']
+        user = auth.authenticate(request, user_id=id, user_password=password)
+        if user is not None:
+            auth.login(request, user)
+            return redirect('index')
+        else:
+            return render(request, 'login.html', {'error': '아이디 또는 비밀번호 가 올바르지 않습니다.'})
+    else:
+        return render(request, 'login.html')
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect('index')
