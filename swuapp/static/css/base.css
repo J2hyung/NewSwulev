@@ -82,13 +82,13 @@ div.section div.articles a.article h3 {
     text-overflow: ellipsis;
 }
 
-div.section div.articles a.article p.rate span {
+/* div.section div.articles a.article p.rate span {
     display: block;
-    width: 60px;
-    height: 12px;
+    width: 60px; 
+    height: 12px; 
     background: transparent url(/images/app.subject.rating.details.star.off.png) no-repeat left top;
     background-size: 60px 12px;
-}
+} */
 div.section div.articles a.article p.info {
     margin-bottom: 4px;
     line-height: 20px;
