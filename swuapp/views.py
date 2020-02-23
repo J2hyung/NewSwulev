@@ -10,6 +10,8 @@ def main(request):
 
     board = Board.objects.all
     lecture = Lecture.objects.all
+    
+
     return render(request, 'main.html', {'board':board, 'lecture':lecture})
 
 def detail(request, lectureid):

@@ -1,5 +1,7 @@
 from django.db import models
 
+from django.urls import reverse
+
 # Create your models here.
 
 class User(models.Model):
@@ -28,6 +30,7 @@ class Lecture(models.Model):
     professor = models.CharField(max_length=50)
 
 
+
 class Board(models.Model):
     content = models.TextField()
     quality = models.IntegerField()
@@ -35,3 +38,6 @@ class Board(models.Model):
     recommend = models.IntegerField()
     user = models.ForeignKey('User', on_delete=models.CASCADE, related_name='user_id')
     lecture = models.ForeignKey('Lecture', on_delete=models.CASCADE, related_name='lecture')
+
+    def get_absolute_url(self):
+        return reverse('detail', args=[self.lecture.lectureid])
