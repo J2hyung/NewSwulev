@@ -24,13 +24,8 @@ class Profile(models.Model):
         instance.profile.save()
 
 
-class User(models.Model):
+class Student_User(models.Model):
     userid = models.CharField(max_length = 20, unique=True, primary_key=True)
-    userpw = models.CharField(max_length = 30)
-    userSchool = models.CharField(max_length = 50, default='서울여자대학교')
-    userHakbun = models.CharField(max_length = 20, default='')
-    userEmail = models.CharField(max_length = 50, default='')
-    userName = models.CharField(max_length = 30, default='')
 
     def __str__(self):
         return self.userid
@@ -42,7 +37,7 @@ class UserLecture(models.Model):
         ('off', 'off'),
     )
 
-    myuserid = models.ForeignKey('User', on_delete=models.CASCADE, to_field='userid', related_name='myuserid', primary_key=True, unique=True)
+    myuserid = models.ForeignKey('Student_User', on_delete=models.CASCADE, to_field='userid', related_name='myuserid', primary_key=True)
     mylectureid = models.ForeignKey('Lecture', to_field='lectureid',on_delete=models.CASCADE, related_name='mylectureid')
     rating = models.CharField(max_length=10, choices=RATING_FIELD, default = "off")
 
@@ -63,7 +58,7 @@ class Board(models.Model):
     quality = models.IntegerField()
     challenge = models.IntegerField()
     recommend = models.IntegerField()
-    user = models.ForeignKey('User', on_delete=models.CASCADE, related_name='user_id')
+    user = models.ForeignKey('Student_User', on_delete=models.CASCADE, related_name='user_id')
     lecture = models.ForeignKey('Lecture', on_delete=models.CASCADE, related_name='lecture')
 
     def get_absolute_url(self):

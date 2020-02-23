@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Lecture, UserLecture, Board,Profile
+from .models import Lecture, UserLecture, Board,Profile, Student_User
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 
@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 admin.site.register(Lecture)
 admin.site.register(UserLecture)
 admin.site.register(Board)
+admin.site.register(Student_User)
 
 class ProfileInline(admin.StackedInline):
     model = Profile

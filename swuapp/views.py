@@ -35,12 +35,15 @@ def signup(request):
             #     # user = User.objects.get(username=user_name)
             #     return render(request, 'signup.html', {'error': '이미 사용 중인 이름입니다.'})
             # except User.DoesNotExist:
-            user = User.objects.create_user(username = request.POST['id'], password = request.POST['password'])
+            user_id = request.POST['id']
+            user = User.objects.create_user(username = user_id, password = request.POST['password'])
             email = request.POST['email']
             student_id = request.POST['hakbun']
             nickname = request.POST['name']
             profile = Profile(user= user, nickname=nickname ,student_id = student_id, email = email)
             profile.save_user_profile(user)
+            student = Student_User(userid=user_id)
+            student.save()
             auth.login(request, user)
             return redirect('main')
         else:
