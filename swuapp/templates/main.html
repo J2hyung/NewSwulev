@@ -1,8 +1,16 @@
 {% extends 'base.html' %}
 {% block title %}main{% endblock %}
 {% block content %}
-<form class="nav-bar search">
-  <input type="text" class="search-query" placeholder="과목명, 교수명으로 검색">
+
+{% if popup %}
+    <script>
+    alert("검색 결과가 없습니다.");
+    location.href("/main");
+    </script>  
+{% endif %}
+
+<form action="{% url 'search' %}" method="GET" class="nav-bar search">
+  <input onkeyup="enterkey();" type="text" name="q" value="{{q}}" class="search-query" placeholder="과목명, 교수명으로 검색">
 </form>
 <div class="section">
   
