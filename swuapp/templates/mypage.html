@@ -2,14 +2,17 @@
 {% block title %}마이페이지{% endblock %}
 {% block content %}
 <div class="section">
-    
+  {{data.is_authenticated}}
+
     <h2>내가 남긴 강의평</h2>
     
+    {% for board in board %}
+    {% if board.user.userid == "simba" %}
     <div class="mylectures">
       <span class="lecture">
         <h3> <!-- 여기도 태그 안에 함수써서 내용가져오기 -->
-          <span class="name">시스템보안과운영실습</span>
-          <span class="professor">호준원</span>
+          <span class="name">{{board.lecture.lecturename}}</span>
+          <span class="professor">{{board.lecture.professor}}</span>
         </h3>
         <p class="rate">
             <span class="star">
@@ -19,28 +22,14 @@
           <p class="info">
             <span class="semester">19년 2학기 수강자</span>
           </p>
-          <p class="text">교수님이 좋아요</p>
+          <p class="text">{{board.content}}</p>
         <button type="button" class="btn btn-sm btn-primary" id="mypagebt">수정</button>
         <button type="button" class="btn btn-sm btn-danger">삭제</button>
+        {% endif %}
+        {%endfor%}
       </span>
-      <span class="lecture">
-        <h3> <!-- 여기도 태그 안에 함수써서 내용가져오기 -->
-          <span class="name">전진탐</span>
-          <span class="professor">김명주</span>
-        </h3>
-        <p class="rate">
-            <span class="star">
-              <span class="on" style="width: 100%;"><!--별점별로 이미지 넣는 함수삽입--></span>
-            </span>
-          </p>
-          <p class="info">
-            <span class="semester">19년 2학기 수강자</span>
-          </p>
-          <p class="text">학교가기 귀찮다..</p>
-        <button type="button" class="btn btn-sm btn-primary" id="mypagebt">수정</button>
-        <button type="button" class="btn btn-sm btn-danger">삭제</button>
-      </span>
+     
     </div>
 </div>
-  
+
 {% endblock %}

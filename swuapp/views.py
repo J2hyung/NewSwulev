@@ -26,6 +26,14 @@ def detail(request, lectureid):
 
 
 def mypage(request):
+
+    board = Board.objects.all
+    lecture = Lecture.objects.all
+    userlecture = UserLecture.objects.all
+    if request.user.is_authenticated:
+        mylecture = UserLecture.objects.filter(myuserid = str(request.user))
+        return render(request, 'mypage.html', {'board':board, 'lecture':lecture,  'mylecture':mylecture})
+    
     return render(request, 'mypage.html')
 
 
