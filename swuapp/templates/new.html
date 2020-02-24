@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}new{% endblock %}
+{% block content %}
+
+<script>
+function click() {
+  this.style.backgroundColor = "red";
+  alert("click");
+}
+</script>
+
+<div class="new">
+  <form action = "{% url 'new' %}"></form>
+        <div class="header">
+          <h3 >{{mylecture.lecturename}}</h3>     <!-- userlecture에서 불러오기 -->
+        </div>
+        <br>
+        <div class="body">
+          <dl>
+            <dt>강의 퀄리티</dt>
+            <dd>
+              <div class="btn-group" role="group" aria-label="quality group">
+                
+                <button onclick="click();" name="1s" type="button" class="btn btn-sm btn-default">1점</button>
+                <button type="button" class="btn btn-sm btn-default">2점</button>
+                <button type="button" class="btn btn-sm btn-default">3점</button>
+                <button type="button" class="btn btn-sm btn-default">4점</button>
+                <button type="button" class="btn btn-sm btn-default">5점</button>
+              </div>
+            </dd><br>
+            <dt>과목 난이도</dt>
+            <dd>
+              <div class="btn-group" role="group" aria-label="level group">
+                <button type="button" class="btn btn-sm btn-default">1점</button>
+                <button type="button" class="btn btn-sm btn-default">2점</button>
+                <button type="button" class="btn btn-sm btn-default">3점</button>
+                <button type="button" class="btn btn-sm btn-default">4점</button>
+                <button type="button" class="btn btn-sm btn-default">5점</button>
+              </div>
+            </dd><br>
+            <dt>수강 학기</dt>
+            <dd name=semester>{{mylecture.semester}}</dd>   <!-- userlecture에서 불러오기 -->
+          </dl>
+          <textarea name="content" class="text" cols="40" rows="10" placeholder="강의평을 남겨주세요."></textarea>
+        </div>
+        <div class="footer"><br>
+          <button type="submit" class="btn btn-danger">평가완료</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

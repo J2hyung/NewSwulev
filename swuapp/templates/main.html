@@ -12,9 +12,9 @@
 <form action="{% url 'search' %}" method="GET" class="nav-bar search">
   <input onkeyup="enterkey();" type="text" name="q" value="{{q}}" class="search-query" placeholder="과목명, 교수명으로 검색">
 </form>
-<div class="section">
-  
+<class="section"> 
   <select class="semester-choice">
+    <option>2019-2</option>
     <option>2019-1</option>
     <option>2018-2</option>
     <option>2018-1</option>
@@ -25,23 +25,30 @@
     <span class="lecture">
       <h3> 내가 들은 과목 </h3>
         <ul class="list-group list-group-flush">
-          {% for mylecture in mylecture %}
-          <li class="list-group-item">
-            <span class="name">{{ mylecture.mylectureid.lecturename }}</span>
-            <span class="professor">{{ mylecture.mylectureid.professor }}</span>
-            {% if mylecture.rating == "off" %}
-            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal" >평가하기</button>
-            {% else %}
-            <button type="button" class="btn btn-sm" disabled="disabled">평가 완료</button>
-            {% endif %}
-          </li>
-          {% endfor %}
+          
+          <button class="list-group-item">          
+            <form action="{% url 'new' mylecture.myuserid pk %}" method="POST">
+              {% for ml in mylecture %}
+                <span class="name">{{ml.lecturename}}</span>
+                <span class="professor">{{ml.professor}}</span>
+
+                {% if ml.rating == off %}
+                <span class="btn_completed">
+                  <input type="submit" value="평가완료" class="btn btn-sm">
+                </span>
+                {% else %}
+                <span class="btn_proceed">
+                  <input type="submit" value="평가하기" class="btn btn-danger">
+                </span>
+              {% end for %}
+            </form>
+
         </ul>
     </span>
   </div>
-  
+
   <!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <!--   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -76,12 +83,12 @@
           <textarea name="text" class="text" placeholder="강의평을 남겨주세요."></textarea>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger">평가완료</button>
+          <button type="button" cols=40 rows=10 class="btn btn-danger">평가완료</button>
         </div>
       </div>
     </div>
   </div>
-</div>
+</>-->
 <div class="section">
   <h3>최근 강의평</h3>
   {% for b in board %}

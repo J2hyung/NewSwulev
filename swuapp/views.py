@@ -113,3 +113,11 @@ def post_list(request):
             for object in qp:
                 lectures.append(object)
             return render(request, 'main_search.html', {'lectures' : lectures,'q' : q,})
+
+
+#글 작성
+def new(request, myuserid):
+    mylecture = get_object_or_404(UserLecture, pk=myuserid)
+    boards = Board.objects.filter(lecture = mylecture)
+
+    return render(request, 'new.html', {'mylecture' : mylecture, 'boards': boards})
