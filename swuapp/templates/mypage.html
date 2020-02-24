@@ -7,7 +7,7 @@
     <h2>내가 남긴 강의평</h2>
     
     {% for board in board %}
-    {% if board.user.userid == "simba" %}
+    {% if board.user.userid == username %}
     <div class="mylectures">
       <span class="lecture">
         <h3> <!-- 여기도 태그 안에 함수써서 내용가져오기 -->

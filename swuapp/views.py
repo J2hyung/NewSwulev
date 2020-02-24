@@ -31,8 +31,9 @@ def mypage(request):
     lecture = Lecture.objects.all
     userlecture = UserLecture.objects.all
     if request.user.is_authenticated:
+        username = str(request.user)
         mylecture = UserLecture.objects.filter(myuserid = str(request.user))
-        return render(request, 'mypage.html', {'board':board, 'lecture':lecture,  'mylecture':mylecture})
+        return render(request, 'mypage.html', {'board':board, 'lecture':lecture, 'username':username, 'mylecture':mylecture})
     
     return render(request, 'mypage.html')
 
