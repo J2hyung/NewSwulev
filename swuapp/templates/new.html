@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}New{% endblock %}
+{% block content %}
+
+<br>
+<div class="container">
+    <form action="{% url 'create' %}">
+        <h4>강의 퀄리티</h4>
+          <div class="form-group">
+            <label for="exampleFormControlSelect2">Example multiple select</label>
+            <select multiple class="form-control" id="quality">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            </select>
+        </div>
+        <h4>강의 난이도</h4>
+          <div class="form-group">
+            <label for="exampleFormControlSelect2">Example multiple select</label>
+            <select multiple class="form-control" id="challenge">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            </select>
+        </div>
+        <h4>강의 추천</h4>
+          <div class="form-group">
+            <label for="exampleFormControlSelect2">Example multiple select</label>
+            <select multiple class="form-control" id="recommend">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            </select>
+        </div>
+        <br><br>
+        <h4>내용:</h4>
+        <textarea cols="40" rows="10" name="body"></textarea>
+        <br><br>
+        <button type="submit" class="btn btn-danger">평가완료</button>
+    </form>
+</div>
+
+{% endblock %}

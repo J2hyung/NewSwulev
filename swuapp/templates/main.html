@@ -30,7 +30,7 @@
             <span class="name">{{ mylecture.mylectureid.lecturename }}</span>
             <span class="professor">{{ mylecture.mylectureid.professor }}</span>
             {% if mylecture.rating == "off" %}
-            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal" >평가하기</button>
+            <button type="button" class="btn btn-sm btn-danger" value={{mylecture.mylectureid.lectureid}}  onclick="location.href='{% url 'new'%}'">평가하기</button>
             {% else %}
             <button type="button" class="btn btn-sm" disabled="disabled">평가 완료</button>
             {% endif %}
@@ -48,33 +48,10 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="myModalLabel">강의평가 하기</h4>
         </div>
+
         <div class="modal-body">
-          <dl>
-            <dt>강의 퀄리티</dt>
-            <dd>
-              <div class="btn-group" role="group" aria-label="quality group">
-                <button type="button" class="btn btn-sm btn-default">1점</button>
-                <button type="button" class="btn btn-sm btn-default">2점</button>
-                <button type="button" class="btn btn-sm btn-default">3점</button>
-                <button type="button" class="btn btn-sm btn-default">4점</button>
-                <button type="button" class="btn btn-sm btn-default">5점</button>
-              </div>
-            </dd>
-            <dt>과목 난이도</dt>
-            <dd>
-              <div class="btn-group" role="group" aria-label="level group">
-                <button type="button" class="btn btn-sm btn-default">1점</button>
-                <button type="button" class="btn btn-sm btn-default">2점</button>
-                <button type="button" class="btn btn-sm btn-default">3점</button>
-                <button type="button" class="btn btn-sm btn-default">4점</button>
-                <button type="button" class="btn btn-sm btn-default">5점</button>
-              </div>
-            </dd>
-            <dt>수강학기</dt>
-            <dd>2019-2학기</dd>
-          </dl>
-          <textarea name="text" class="text" placeholder="강의평을 남겨주세요."></textarea>
         </div>
+
         <div class="modal-footer">
           <button type="button" class="btn btn-danger">평가완료</button>
         </div>
@@ -82,6 +59,9 @@
     </div>
   </div>
 </div>
+</form>
+
+
 <div class="section">
   <h3>최근 강의평</h3>
   {% for b in board %}
