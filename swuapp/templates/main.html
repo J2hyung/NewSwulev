@@ -25,10 +25,10 @@
     <span class="lecture">
       <h3> 내가 들은 과목 </h3>
         <ul class="list-group list-group-flush">
-          {% for list in mylecture_list %}
+          {% for mylecture in mylecture %}
           <li class="list-group-item">
-            <span class="name">{{ list.lecturename }}</span>
-            <span class="professor">{{ list.professor }}</span>
+            <span class="name">{{ mylecture.mylectureid.lecturename }}</span>
+            <span class="professor">{{ mylecture.mylectureid.professor }}</span>
             <button type="button" class="btn btn-sm" disabled="disabled">평가 완료</button>
           </li>
           {% endfor %}
