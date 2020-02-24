@@ -30,11 +30,7 @@
             <span class="name">{{ mylecture.mylectureid.lecturename }}</span>
             <span class="professor">{{ mylecture.mylectureid.professor }}</span>
             {% if mylecture.rating == "off" %}
-<<<<<<< HEAD
             <button type="button" class="btn btn-sm btn-danger" value={{mylecture.mylectureid.lectureid}}  onclick="location.href='{{ mylecture.get_absolute_url }}'">평가하기</button>
-=======
-            <button type="button" class="btn btn-sm btn-danger" value={{mylecture.mylectureid.lectureid}}  onclick= "location.href='{%url 'new' %}' ">평가하기</button>
->>>>>>> 03aaa15f06941f0e7fa089dcacc7b4e001277780
             {% else %}
             <button type="button" class="btn btn-sm" disabled="disabled">평가 완료</button>
             {% endif %}
