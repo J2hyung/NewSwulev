@@ -25,6 +25,16 @@ def detail(request, lectureid):
     return render(request, 'detail.html', {'current_lecture' : current_lecture, 'boards': boards})
 
 
+def delete(request, board_id):
+
+    # current_lecture = Lecture.objects.get(lectureid=lectureid)
+    if request.user.is_authenticated:
+        # current_user = str(request.user)
+        boards = get_object_or_404(Board, pk=board_id)
+        boards.delete()
+    return redirect('mypage')
+
+
 def mypage(request):
 
     board = Board.objects.all

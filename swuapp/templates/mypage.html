@@ -24,7 +24,7 @@
           </p>
           <p class="text">{{board.content}}</p>
         <button type="button" class="btn btn-sm btn-primary" id="mypagebt">수정</button>
-        <button type="button" class="btn btn-sm btn-danger">삭제</button>
+        <button type="button" class="btn btn-sm btn-danger" value={{board.lecture.lectureid}} onclick="location.href='{% url 'delete' board.id%}'">삭제</button>
         {% endif %}
         {%endfor%}
       </span>

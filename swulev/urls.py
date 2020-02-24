@@ -8,6 +8,8 @@ urlpatterns = [
     path('signup', signup, name='signup'),
     path('main/', main, name='main'),
     path('detail/<lectureid>/', detail, name='detail'),
+    path('mypage/<int:board_id>/delete/', delete, name='delete'),
     path('mypage/', mypage, name='mypage'),
-    path('main_search/',post_list,name='search')
+    path('main_search/',post_list,name='search'),
+
 ]
