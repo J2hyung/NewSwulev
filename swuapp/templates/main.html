@@ -29,20 +29,22 @@
           <button class="list-group-item">          
             <form action="{% url 'new' mylecture.myuserid pk %}" method="POST">
               {% for ml in mylecture %}
+              <li class="list-group-item"></li>
                 <span class="name">{{ml.lecturename}}</span>
                 <span class="professor">{{ml.professor}}</span>
 
                 {% if ml.rating == off %}
-                <span class="btn_completed">
-                  <input type="submit" value="평가완료" class="btn btn-sm">
-                </span>
+                  <span class="btn_proceed">
+                    <input type="submit" value="평가하기" class="btn btn-danger">
+                  </span>
                 {% else %}
-                <span class="btn_proceed">
-                  <input type="submit" value="평가하기" class="btn btn-danger">
-                </span>
-              {% end for %}
+                  <span class="btn_completed">
+                    <input type="submit" value="평가완료" class="btn btn-sm">
+                  </span>
+                {% endif %}
+              </li>
+              {% endfor %}
             </form>
-
         </ul>
     </span>
   </div>
