@@ -2,8 +2,8 @@
 {% block title %}New{% endblock %}
 {% block content %}
 
-
 <br>
+<div class="body">
 <div class="container">
     <form method='post' action="{% url 'update' boards.id %}">
           {% csrf_token %}
@@ -39,10 +39,10 @@
         </div>
         <br><br>
         <h4>내용:</h4>
-        <textarea cols="40" rows="10" name="content">{{boards.content}}</textarea>
+        <textarea class="form-control" id="content" name="content" rows="3">{{boards.content}}</textarea>
         <br><br>
         <button type="submit" class="btn btn-danger">평가완료</button>
     </form>
 </div>
-
+</div>
 {% endblock %}
