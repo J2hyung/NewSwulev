@@ -25,19 +25,21 @@ def detail(request, lectureid):
     return render(request, 'detail.html', {'current_lecture' : current_lecture, 'boards': boards})
 
 
-def new(request):
-
+def new(request, lectureid):
+    
+    current_lecture = get_object_or_404(Lecture, pk=lectureid)
     # current_lecture = get_object_or_404(Lecture, pk=lectureid)
-    return render(request, 'new.html')
+    return render(request, 'new.html', {'current_lecture':current_lecture})
 
 def create(request, lectureid):
     
     current_lecture = get_object_or_404(Lecture, pk=lectureid)
     if request.user.is_authenticated:
-        blog = Board(user=request.user, lecture=current_lecture)
-        blog.quality = request.GET['quality']
-        blog.challenge = request.GET['challenge']
-        blog.recommend = request.GET['recommend']
+        blog = Board(user= Student_User.objects.get(userid=request.user), lecture=current_lecture)
+        blog.quality = request.POST['quality']
+        blog.challenge = request.POST['challenge']
+        blog.recommend = request.POST['recommend']
+        blog.content = request.POST['content']
         blog.save()
     return redirect('main')
 

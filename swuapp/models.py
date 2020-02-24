@@ -41,8 +41,8 @@ class UserLecture(models.Model):
     mylectureid = models.ForeignKey('Lecture', to_field='lectureid',on_delete=models.CASCADE, related_name='mylectureid')
     rating = models.CharField(max_length=10, choices=RATING_FIELD, default = "off")
     
-    def get_url(self):
-        return reverse('new', args)
+    def get_absolute_url(self):
+        return reverse('new', args=[self.mylectureid.lectureid])
 
 class Lecture(models.Model):
     semester = models.CharField(max_length = 30)
