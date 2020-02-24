@@ -29,7 +29,11 @@
           <li class="list-group-item">
             <span class="name">{{ mylecture.mylectureid.lecturename }}</span>
             <span class="professor">{{ mylecture.mylectureid.professor }}</span>
+            {% if mylecture.rating == "off" %}
+            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal" >평가하기</button>
+            {% else %}
             <button type="button" class="btn btn-sm" disabled="disabled">평가 완료</button>
+            {% endif %}
           </li>
           {% endfor %}
         </ul>
