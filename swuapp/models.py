@@ -36,8 +36,8 @@ class UserLecture(models.Model):
         ('on', 'on'),
         ('off', 'off'),
     )
-
-    myuserid = models.ForeignKey('Student_User', on_delete=models.CASCADE, to_field='userid', related_name='myuserid', primary_key=True)
+    
+    myuserid = models.ForeignKey('Student_User', on_delete=models.CASCADE, to_field='userid', related_name='myuserid')
     mylectureid = models.ForeignKey('Lecture', to_field='lectureid',on_delete=models.CASCADE, related_name='mylectureid')
     rating = models.CharField(max_length=10, choices=RATING_FIELD, default = "off")
 
