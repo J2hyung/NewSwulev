@@ -117,7 +117,19 @@ def post_list(request):
 
 #글 작성
 def new(request, myuserid):
-    mylecture = get_object_or_404(UserLecture, pk=myuserid)
-    boards = Board.objects.filter(lecture = mylecture)
+    userlectre = UserLecture.objects.all()
+    mylecture =  userlectre.filter(myuserid = str(myuserid))
+    board = Board()
 
-    return render(request, 'new.html', {'mylecture' : mylecture, 'boards': boards})
+    board.content = request.POST.get('content')
+    quality = 1
+    challenge = 1
+    recommend = 0
+    user = mylecture.myuserid()
+    lecture = mylecture.mylectureid()
+
+    board.save()
+
+    return render(request, 'new.html', {'mylecture' : mylecture})
+
+    #return render(request, 'detail.html', {'current_lecture':lecture})
