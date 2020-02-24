@@ -39,7 +39,7 @@
 
           <div class="member-info">
             <label for="inputId" class="sr-only">아이디</label>
-            <input type="id" id="inputId" name="id" class="form-control" placeholder="아이디" required autofocus>
+            <input type="id" id="inputId" name="id" class="form-control" placeholder="아이디(학번과 똑같이 입력해주세요)" required autofocus>
             
             <label for="inputPassword" class="sr-only">비빌번호</label>
             <input type="password" id="inputPassword" name="password" class="form-control" placeholder="비밀번호" required>
@@ -55,8 +55,8 @@
           </div>
           
           <button class="btn btn-primary" type="submit" value="signup">회원가입</button>
-          <button class="btn btn-primary" type="submit" value="home">취소</button>
         </form>
+          <button class="btn btn-primary" type="submit" value="home" onclick="location.href='{% url 'login'%}'"> 취소</button>
 
     </div> <!-- /container -->
 
