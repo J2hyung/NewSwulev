@@ -41,6 +41,11 @@ def create(request, lectureid):
         blog.recommend = request.POST['recommend']
         blog.content = request.POST['content']
         blog.save()
+
+        rate = UserLecture.objects.get(mylectureid = current_lecture)
+        rate.rating = 'on'
+        rate.save()
+        
     return redirect('main')
 
 def edit(request, board_id):
