@@ -23,8 +23,10 @@
             <span class="semester">19년 2학기 수강자</span>
           </p>
           <p class="text">{{board.content}}</p>
-        <button type="button" class="btn btn-sm btn-primary" id="mypagebt">수정</button>
-        <button type="button" class="btn btn-sm btn-danger" value={{board.lecture.lectureid}} onclick="location.href='{% url 'delete' board.id%}'">삭제</button>
+
+          <button type="button" class="btn btn-sm btn-primary" id="mypagebt" value={{board.lecture.lectureid}} onclick="location.href='{% url 'edit' board.id%}'">수정</button>
+         <button type="button" class="btn btn-sm btn-danger" value={{board.lecture.lectureid}} onclick="location.href='{% url 'delete' board.id%}'">삭제</button>
+
         {% endif %}
         {%endfor%}
       </span>

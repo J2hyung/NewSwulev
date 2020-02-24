@@ -43,6 +43,22 @@ def create(request, lectureid):
         blog.save()
     return redirect('main')
 
+def edit(request, board_id):
+
+    boards = get_object_or_404(Board, pk=board_id)
+    return render(request, 'edit.html', {'boards':boards})
+        
+def update(request, board_id):
+    
+    boards = get_object_or_404(Board, pk=board_id)
+    if(request.method == "POST"):
+        boards.quality = request.POST['quality']
+        boards.challenge = request.POST['challenge']
+        boards.recommend = request.POST['recommend']
+        boards.content = request.POST['content']
+        boards.save()
+    return redirect('main')
+
 def delete(request, board_id):
 
     # current_lecture = Lecture.objects.get(lectureid=lectureid)
