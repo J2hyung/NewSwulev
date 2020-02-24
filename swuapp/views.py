@@ -129,23 +129,3 @@ def post_list(request):
             for object in qp:
                 lectures.append(object)
             return render(request, 'main_search.html', {'lectures' : lectures,'q' : q,})
-
-
-#글 작성
-def new(request, myuserid):
-    userlectre = UserLecture.objects.all()
-    mylecture =  userlectre.filter(myuserid = str(myuserid))
-    board = Board()
-
-    board.content = request.POST.get('content')
-    quality = 1
-    challenge = 1
-    recommend = 0
-    user = mylecture.myuserid()
-    lecture = mylecture.mylectureid()
-
-    board.save()
-
-    return render(request, 'new.html', {'mylecture' : mylecture})
-
-    #return render(request, 'detail.html', {'current_lecture':lecture})
